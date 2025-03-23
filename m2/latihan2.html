@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>City Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+       
+		.container {
+			width: 1000px;
+			margin: auto;
+		}
+		.header {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+			font-weight: bold;
+        }
+       
+        .nav {
+            width: 13%;
+            background-color: #f1f1f1;
+            position: absolute;
+            top: 100px; 
+            bottom: 30px; 
+            left: 0;
+            padding: 10px;
+        }
+       
+        .nav a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+       
+       
+        .content {
+            margin-left: 15%;
+            padding: 10px;
+        }
+       
+        .city-image {
+            max-width: 300px;
+            float: right;
+            margin-left: 15px;
+        }
+       
+        .footer {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            clear: both;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .city-content {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>City Gallery</h1>
+    </div>
+    <div class="nav">
+        <a onclick="showCity('kulonprogo')">Kulon Progo</a>
+        <a onclick="showCity('sleman')">Sleman</a>
+    </div>
+    <div class="content">
+        <div id="kulonprogo" class="city-content active">
+            <h2>Kulon Progo</h2>
+            <img src="https://blog-admin.avoskinbeauty.com/wp-content/uploads/2021/05/7acba2c3-c959-47b4-ac1a-10ee8ceb8a6a.jpg" alt="KP" class="city-image">
+			<p>Kulon Progo adalah sebuah kabupaten di provinsi Daerah Istimewa Yogyakarta, Indonesia. Ibu kotanya adalah Kapanewon Wates.</p>
+            <p>Kabupaten ini berbatasan langsung dengan Kabupaten Sleman dan Kabupaten Bantul di timur, Samudra Hindia di selatan, Kabupaten Purworejo di barat, serta Kabupaten Magelang di utara.</p>
+			<p>Nama Kulon Progo diambil dari kalimat Kulone Kali Progo yang berarti sebelah barat Sungai Progo (kata kulon dalam Bahasa Jawa artinya barat).</p>
+			<p>Kali Progo membatasi kabupaten ini di sebelah Timur. Pada pertengahan tahun 2024, jumlah penduduk Kulon Progo sebanyak 444.516 jiwa.</p>
+        </div>
+
+        <div id="sleman" class="city-content">
+            <h2>Sleman</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Yogyakarta_Indonesia_Prambanan-temple-complex-02.jpg/432px-Yogyakarta_Indonesia_Prambanan-temple-complex-02.jpg"" alt="Sleman" class="city-image">
+            <p>Sleman adalah sebuah wilayah kabupaten yang terletak di Provinsi Daerah Istimewa Yogyakarta, Indonesia.</p>
+			<p>Ibu kotanya adalah Kapanéwon Sleman. Sleman dikenal sebagai asal buah salak pondoh.</p>
+        </div>
+    </div>
+    <div class="footer">
+        Copyright @lisbeth
+    </div>
+    <script>
+        function showCity(cityId) {
+            // Hide all city content
+            document.querySelectorAll('.city-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected city content
+            document.getElementById(cityId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

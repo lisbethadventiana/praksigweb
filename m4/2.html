@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>No.2 Validasi Input</title>
+</head>
+<body>
+    <h1>Validasi Input</h1>
+    <p>Masukkan nama, password dan alamat email anda:</p>
+
+    <form onsubmit="return validasiPassword()">
+        Nama: <input type="text" id="nama"><br>
+        Password: <input type="password" id="password"><br>
+        E-mail: <input type="email" id="email"><br>
+        <button type="submit">Klik</button>
+    </form>
+
+    <script>
+        function validasiPassword() {
+            let password = document.getElementById("password").value;
+            
+            if (password !== "sss") {
+                alert("password salah");
+                return false;
+            }
+
+            alert("berhasil!");
+            return true;
+        }
+    </script>
+</body>
+</html>
