@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Web Map M7 Lisbeth</title>
+    <link rel="stylesheet" href="leaflet.css" />
+    <script src="leaflet.js"></script>
+    <script src="jogjaa.js"></script>
+    <link rel = "icon" href = "ugm.png" 
+    type = "image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" href="Leaflet.print/dist/leaflet.print.css" />
+    <script src="Leaflet.print/dist/leaflet.print.js"></script>
+    <script src="leaflet.browser.print/dist/leaflet.browser.print.js"></script>
+    <script src="leaflet.browser.print/dist/leaflet.browser.print.min.js"></script>
+    <style>
+        body {
+        padding: 0;
+        margin: 0;
+        }
+        .leaflet-popup-content {
+        max-width: 200px;
+        height: 100px;
+        overflow-y: scroll;
+        }
+        .site-header {
+        background-color: #D0E7D2;
+        width: 100%;
+        }
+        .site-header h1 {
+        margin: 0;
+        padding: 25px;
+        }
+        html, body, #map {
+        height: 100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        }
+        .navbar-brand {
+        font-family: 'Courier New'; 
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg  navbar-dark shadow" style="background-color: #D0E7D2">
+            <div class="container">
+                <a class="navbar-brand" href="#"></a>
+                <img src="ugm.png" alt="Bootstrap" width="30" height="30" /></a>
+                <a class="navbar-brand data-bs-toggle" style="color: black" href="#">Peta Rute Perjalanan Menuju Departemen di FT UGM</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0">My Location </button>
+            </form>
+            </div>
+            </nav>
+    </header>
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map', {
+            center: [-7.76342,110.37327],
+            zoom: 16
+        });
+
+        var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{
+            maxZoom: 25,
+            attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
+        }).addTo(map); 
+
+        var marker = L.marker([-7.76530,110.37233]).bindPopup('SGLC FT UGM').addTo(map);
+        var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA,USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',}).addTo(map);
+        var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>&copy; <a href="http://cartodb.com/attributions">CartoDB</a>',subdomains: 'abcd',maxZoom: 25
+        });
+        var baseMaps = {"Citra Satelit": esri,"Peta Carto": carto,"OpenStreetMap": osm };
+    var DTGD = L.marker([-7.76388,110.37280],{
+        title: "DTGD FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Geodesi </h4> <p>Pada awal berdirinya yaitu pada bulan Agustus tahun 1959, DTGD masih merupakan program studi gabungan dengan program studi Teknik Geologi yang bernama Bagian Teknik Geodesi dan Geologi.</p> <img src ="./gambar/dtgd.jpeg" style="width:150px">')
+    DTSL = L.marker([-7.76422,110.37306],{
+        title: "DTSL FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Sipil dan Lingkungan </h4> <p>Departemen Teknik Sipil dan Lingkungan (DTSL) Universitas Gadjah Mada memiliki fokus pada pengajaran, penelitian, dan pengembangan beberapa aspek Kelompok Bidang Keahlian (KBK): struktur, hidraulika, geoteknik, transportasi, dan lingkungan.</p> <img src ="./gambar/dtsl.jpg" style="width:150px">')    
+    DTGL = L.marker([-7.76595,110.37314],{
+        title: "DTGL FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Geologi FT UGM</h4> <p>Departemen Teknik Geologi didirikan pada bulan Agustus 1959 sebagai bagian di Fakultas Teknik UGM yang berupa gabungan bagian Geodesi dan Geologi. Pada saat itu, Dekan Fakultas Teknik dijabat oleh Prof. Ir. Soepardi dan Sekretaris Fakultas oleh Prof. R. Soeroso Notohadiprawiro merangkap sebagai ketua bagian Geodesi-Geologi Teknik. Lokasi perkuliahan yang dipergunakan adalah beberapa ruangan di Sekip Unit IV.</p> <img src ="./gambar/dtgl.jpg" style="width:150px">')
+    DTNTF = L.marker([-7.76625,110.37282],{
+        title: "DTNTF FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Nuklir dan Teknik Fisika </h4> <p>DTNTF terdiri atas 2 program studi sarjana, yaitu Teknik Nuklir dan Teknik Fisika.</p> <img src ="./gambar/dtntf.jpg" style="width:150px">')    
+    DTETI = L.marker([-7.76596,110.37162],{
+        title: "DTETI FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Elektro dan Teknologi Informasi </h4> <p>Departemen ini terdiri atas 3 program studi sarjana, yaitu Teknik Elektro, Teknologi Informasi, Teknik Biomedis</p> <img src ="./gambar/dteti.jpg" style="width:150px">')
+    DTMI = L.marker([-7.76564,110.37103],{
+        title: "DTMI FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Mesin dan Industri </h4> <p>DTMI memiliki Program Studi Sarjana, Magister, dan Doktor di bidang Teknik Mesin dan Teknik Industri. </p> <img src ="./gambar/dtmi.jpg" style="width:150px">')   
+    DTK = L.marker([-7.76517,110.37133],{
+        title: "DTK FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Kimia </h4> <p>Departemen Teknik Kimia Fakultas Teknik UGM lahir dalam kancah revolusi Kemerdekaan Indonesia. Pada jaman penjajahan Belanda, di Indonesia hanya ada sebuah Perguruan Tinggi Teknik. Perguruan Tinggi Teknik ini berkedudukan di Bandung dengan nama Technische Hoogeschool yang didirikan Pemerintah Hindia Belanda pada tanggal 3 Juli 1920. Perguruan Tinggi ini memiliki Bagian Kimia, tetapi baru pada tingkat permulaan.</p> <img src ="./gambar/dtk.jpg" style="width:150px">')  
+    DTAP = L.marker([-7.76381,110.37208],{
+        title: "DTAP FT UGM"
+    }).addTo(map).bindPopup(
+        '<h4> Departemen Teknik Arsitektur dan Perencanaan </h4> <p>Departemen Teknik Arsitektur dan Perencanaan/DTAP dimulai dengan pembukaan program arsitektural sebagai bagian Fakultas Teknik pada 1962, pembukaan program Teknik Arsitektur ini tidak lepas dari peran Universitas California Los Angeles (UCLA) memberikan bantuan ke Fakultas Teknik UGM pada tahun 1957 hingga 1964.</p> <img src ="./gambar/dtap.jpg" style="width:150px">')  
+        var departemen = L.layerGroup([DTGD, DTSL, DTAP, DTK, DTGL, DTNTF, DTMI, DTETI]);
+    var overlayMaps = {"FT UGM": departemen};
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    L.geoJSON(jogjageojson,{ 
+        style: function(feature) {
+            switch (feature.properties.KABUPATEN) {
+                case 'Gunung Kidul': return {color: "#ff9900"};
+                case 'Sleman': return {color: "red"};
+                case 'Bantul': return {color: "blue"};
+                case 'Yogyakarta': return {color: "green"};
+                case 'Kulon Progo': return {color: "magenta"};
+            }
+        },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(
+                    'Kecamatan ' +
+                    '<strong>' + 
+                    feature.properties.KECAMATAN +
+                    '</strong>'
+                    );
+        }
+    }).addTo(map);
+    var startIcon = L.icon({
+    iconUrl: 'foto/start.png', 
+    iconSize:[30,50],
+    iconAnchor:[12,41]
+    });
+    var destinationIcon = L.icon({
+    iconUrl: 'foto/arrived.png', 
+    iconSize: [50,30], 
+    iconAnchor: [12, 41],
+    });
+    L.Routing.control({
+    waypoints: [{
+        latLng: L.latLng([-7.75896,110.37810]),
+        name: "Start"},
+        {
+        latLng: L.latLng([-7.76388,110.37280]),
+        name: "Destination"}],
+        routeWhileDragging: true,
+        routeDragTimeout: 250,
+        lineOptions: {styles: [{ color: 'green', opacity: 1, weight: 3 }]},
+            collapsible: true,
+            show: false,
+            createMarker: function(i, waypoint, n) 
+            {if (i === 0 || i === n - 1) {return L.marker(waypoint.latLng, 
+                {draggable: true,icon: i === 0 ? startIcon : destinationIcon,
+                title: waypoint.name});} 
+            else {return L.marker(waypoint.latLng, 
+                {draggable: true,
+                title: waypoint.name});}
+            },
+            summaryTemplate: '<div class="start-end-summary"><b>{name}</b></div>'
+            }).addTo(map) 
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{
+        maxZoom: 25,
+        attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>contributors'
+    }).addTo(map);  
+    var printer = L.control.browserPrint().addTo(map);
+    printer.on('beforePrint', function () {
+    printer.printMap('Print', 'A4Portrait');});
+    document.getElementById("printButton").addEventListener("click", function () {
+    printer.print();
+});
+</script>
+</body>
+</html>
